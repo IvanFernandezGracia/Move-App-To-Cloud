@@ -8,8 +8,13 @@ const adapter = new fs("db.json");
 const db = low(adapter);
 const cors = require("cors");
 
+var port = process.env.PORT || 3001;
+console.log(port);
 // allow cross-origin resource sharing (CORS)
-var allowlist = ["https://users-mit.herokuapp.com/", "http://localhost:3001/"];
+var allowlist = [
+  "https://users-mit.herokuapp.com/",
+  `http://localhost:${port}/`,
+];
 var corsOptionsDelegate = function (req, callback) {
   var corsOptions;
   if (allowlist.indexOf(req.header("Origin")) !== -1) {
@@ -60,6 +65,6 @@ app.post("/add", function (req, res) {
 
 // start server
 // -----------------------
-app.listen(3000, function () {
-  console.log("Running on port 3001!");
+app.listen(port, function () {
+  console.log(`Running on port ${port}!`);
 });
