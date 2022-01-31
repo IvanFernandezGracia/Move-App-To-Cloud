@@ -43,8 +43,16 @@ app.get("/data", function (req, res) {
   res.send(db.get("users").value());
 });
 
+// delete all users
+app.get("/deleteusers", function (req, res) {
+  console.log("delete User log server");
+  db.get("users").remove({}).write();
+  res.send(db.get("users").value());
+});
+
 // add user
 app.post("/add", function (req, res) {
+  console.log("add  User log server");
   var user = {
     name: req.body.name,
     dob: req.body.dob,
@@ -59,7 +67,7 @@ app.post("/add", function (req, res) {
     avatar: req.body.avatar,
   };
   db.get("users").push(user).write();
-  console.log(db.get("users").value());
+  // console.log(db.get("users").value());
   res.send(db.get("users").value());
 });
 

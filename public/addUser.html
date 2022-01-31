@@ -70,8 +70,8 @@ function add(){
     }
 
     // post user
-    const url = 'http://104.131.178.189:3001/add';
-    // const url = 'http://localhost:3000/add';
+    const url = 'https://users-mit.herokuapp.com/add';
+    // const url = 'http://localhost:3001/add';
     superagent
         .post(url)
         .send(user)
